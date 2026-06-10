@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "local-dev-secret-key-123")
 DEBUG = os.getenv("DEBUG", "1") == "1"
-ALLOWED_HOSTS = ["*" ["*", ".railway.app", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*", ".railway.app", "localhost", "127.0.0.1"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -29,7 +29,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
-# --- THE MISSING CONFIGURATION ---
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -48,7 +47,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Dynamic Database Router (Parses Railway URL or drops back to local Compose defaults)
 if os.getenv("DATABASE_URL"):
     DATABASES = {
         "default": dj_database_url.config(conn_max_age=600, ssl_require=False)
